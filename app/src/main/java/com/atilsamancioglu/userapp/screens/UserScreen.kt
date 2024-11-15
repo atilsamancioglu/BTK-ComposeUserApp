@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.atilsamancioglu.userapp.model.User
 
 @Composable
-fun JokeList(userList: List<User>) {
+fun UserList(userList: List<User>) {
     LazyColumn(modifier = Modifier
         .fillMaxSize()
         .background(color = MaterialTheme.colorScheme.primaryContainer)
