@@ -46,10 +46,10 @@ fun UserRow(user: User) {
                 Text(text= (user.name),
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(2.dp),
-                    fontWeight = FontWeight.Normal
+                    fontWeight = FontWeight.Bold
                 )
 
-                Text(text= (user.email),
+                Text(text= ("Email: " + user.email),
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(2.dp),
                     fontWeight = FontWeight.Normal
@@ -61,7 +61,7 @@ fun UserRow(user: User) {
                     fontWeight = FontWeight.Normal
                 )
 
-                Text(text= (user.phone),
+                Text(text= ("Phone: " + user.phone),
                     style = MaterialTheme.typography.headlineSmall,
                     modifier = Modifier.padding(2.dp),
                     fontWeight = FontWeight.Normal
