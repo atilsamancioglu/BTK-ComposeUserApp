@@ -13,6 +13,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.atilsamancioglu.userapp.screens.UserList
 import com.atilsamancioglu.userapp.ui.theme.UserAppTheme
 import com.atilsamancioglu.userapp.viewmodel.UserViewModel
@@ -25,11 +28,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
+
             UserAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.padding(innerPadding)) {
-                        viewModel.getUsers()
-                        UserList(userList = viewModel.userList.value)
+                        NavHost(navController = navController, startDestination = "liste_ekrani") {
+                            composable("liste_ekrani") {
+                                viewModel.getUsers()
+                                UserList(userList = viewModel.userList.value)
+                            }
                     }
                 }
 
