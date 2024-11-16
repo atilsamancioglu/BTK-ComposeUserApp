@@ -75,14 +75,19 @@ class MainActivity : ComponentActivity() {
                                 yanlış yol
                                 val scope = rememberCoroutineScope()
 
-                                var secilenKullanici : User? = null
+                                //var secilenKullanici : User? = null
+
+                                 val secilenKullanici = remember {
+                                    mutableStateOf<User>(User(1,"","","", Address("","","","",
+                                        Geo("","")),"","", Company("","","")))
+                                }
                                 scope.launch {
                                     secilenKullanici = detailViewModel.getSingleUser(kullaniciString ?: 0)
 
                                 }
-                                secilenKullanici?.let {
-                                    DetailScreen(user = secilenKullanici!!)
-                                }
+
+                                DetailScreen(user = secilenKullanici!!)
+
                                  */
 
                                 /*
