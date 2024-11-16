@@ -3,6 +3,7 @@ package com.atilsamancioglu.userapp.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,16 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.atilsamancioglu.userapp.model.User
+import com.google.gson.Gson
 
 @Composable
-fun UserList(userList: List<User>) {
+fun UserList(userList: List<User>, navController: NavController) {
     LazyColumn(modifier = Modifier
         .fillMaxSize()
         .background(color = MaterialTheme.colorScheme.primaryContainer)
     ) {
         items(userList) {
-            UserRow(user = it)
+            UserRow(user = it, navController = navController)
         }
     }
 
@@ -33,11 +36,13 @@ fun UserList(userList: List<User>) {
 
 
 @Composable
-fun UserRow(user: User) {
+fun UserRow(user: User, navController: NavController) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .border(BorderStroke(2.dp, Color.Black)) // Adding a border here
-
+        .clickable {
+            navController.navigate("detay_ekrani/${Gson().toJson(user)}")
+        }
         .background(color = MaterialTheme.colorScheme.primaryContainer)
         .padding(10.dp)
     ) {
